@@ -4,6 +4,8 @@
 *
 *  Adaptative regulation sous-vide cooker algorithm
 *
+*  See http://www.instructables.com/id/Cheap-and-effective-Sous-Vide-cooker-Arduino-power/ for more info
+*
 *  Author : Etienne Giust - 2013
 *
 *  Features
