@@ -61,6 +61,7 @@
 #define TEMP_DISPLAY_DRIVER 0
 #define DISPLAY_LEFT 4  //left 4 digits of display
 #define DISPLAY_RIGHT 0  //right 4 digits of display
+#define REVERSE_DISPLAY 0 //set to 7 if your displays first digit is on the left
 
 // push-buttons
 #define BT_TEMP_MORE_PIN 6 //INPUT_PULLUP mode
@@ -1372,39 +1373,39 @@ void printNumber(int wholePart, int decimalPart, boolean showDecimal, int displa
     {
       // ex : 153.2
       if (wholePart > 99)     {
-        lc.setDigit(displayAddress,displaySide+3,(byte)hundreds,false);
+        lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+3)),(byte)hundreds,false);
       } else {
         eraseDigit(displayAddress,displaySide,3);
       }
       if (wholePart > 9)      
       { 
-        lc.setDigit(displayAddress,displaySide+2,(byte)tens,false);
+        lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+2)),(byte)tens,false);
       }else {
         eraseDigit(displayAddress,displaySide,2);
       }      
-      lc.setDigit(displayAddress,displaySide+1,(byte)ones,true);
-      lc.setDigit(displayAddress,displaySide,(byte)tenths,forceLowerRight);
+      lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+1)),(byte)ones,true);
+      lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-displaySide),(byte)tenths,forceLowerRight);
     } 
     else
     { 
       // ex :  946
-      lc.setDigit(displayAddress,displaySide+3,' ',false);
+      lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+3)),' ',false);
       if (wholePart > 99)     {
-        lc.setDigit(displayAddress,displaySide+2,(byte)hundreds,false);
+        lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+2)),(byte)hundreds,false);
       } else {   
         eraseDigit(displayAddress,displaySide,2);
       }
       if (wholePart > 9)      {
-        lc.setDigit(displayAddress,displaySide+1,(byte)tens,false);
+        lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-(displaySide+1)),(byte)tens,false);
       } else {
         eraseDigit(displayAddress,displaySide,1);
       }
-      lc.setDigit(displayAddress,displaySide,(byte)ones,forceLowerRight);
+      lc.setDigit(displayAddress,abs(REVERSE_DISPLAY-displaySide),(byte)ones,forceLowerRight);
     }
 }
 
 void eraseDigit(int displayAddress, int displaySide, int digitIndex) {
-    lc.setChar(displayAddress,displaySide+digitIndex,' ',false);
+    lc.setChar(displayAddress,abs(REVERSE_DISPLAY-(displaySide+digitIndex)),' ',false);
 }
 
 void eraseDisplay(int displayAddress, int displaySide) {       
