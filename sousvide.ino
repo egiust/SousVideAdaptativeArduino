@@ -1168,7 +1168,7 @@ void checkShutdownConditions(){
     }
     // plan next check
     tempBeforeHeating = actualTemp;
-    tCheckNotHeatingWildly = millis() + 1000 * 60 * MAX_HEATINGTIME_NO_TEMP_CHANGE_MINUTES;
+	tCheckNotHeatingWildly = millis() + ((unsigned long)60000 * MAX_HEATINGTIME_NO_TEMP_CHANGE_MINUTES);
   }
   
   if (doShutdown == true)
