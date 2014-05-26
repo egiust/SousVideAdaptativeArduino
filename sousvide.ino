@@ -269,7 +269,7 @@ void loop() {
 				environmentTemp = min(actualTemp, 30);			
 			}
 			// check if target temp is in acceptable range and switch to first ramp if so
-			if(targetTemp > MIN_TARGET_TEMP)
+			if(targetTemp >= MIN_TARGET_TEMP)
 			{
 				StartInitialRamping();        
 			}
